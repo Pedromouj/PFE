@@ -1,0 +1,20 @@
+const express = require("express");
+const app = express();
+const cors = require("cors");
+app.use(cors());
+app.use(express.json());
+require("dotenv").config();
+const authRouter = require("./routes/authRouter");
+const CategoryRouter = require("./routes/CategoryRouter");
+const BudgetRouter = require("./routes/BudgetRoutes");
+const TransitionRouter = require("./routes/TransactionRouter");
+const GoalRouter = require("./routes/GoalsRouter");
+const PORT = 5000;
+app.use("/api/", authRouter);
+app.use("/api/", CategoryRouter);
+app.use("/api/", BudgetRouter);
+app.use("/api/", TransitionRouter);
+app.use("/api/", GoalRouter);
+app.listen(process.env.SERVER_NODE_PORT || PORT, () => {
+  console.log(`Server runing on ${process.env.SERVER_NODE_PORT}`);
+});
